@@ -51,27 +51,12 @@
     color: var(--text-muted);
     font-size: 1.05rem;
   }
-  .hero-media {
-    position: relative;
-  }
-  .hero-media::before {
-    content: "";
-    position: absolute;
-    inset: -6% -10% -10% -6%;
-    background: linear-gradient(135deg, var(--accent-soft), var(--accent-deep-soft));
-    border-radius: 63% 37% 54% 46% / 48% 42% 58% 52%;
-    z-index: -1;
-    transform: rotate(-4deg);
-  }
   .hero-media img {
     width: 100%;
     aspect-ratio: 4 / 5;
     object-fit: cover;
     background: var(--surface);
     border: 1px solid var(--surface-line);
-    border-radius: 28px;
-    transform: rotate(-2deg);
-    box-shadow: 0 18px 40px -20px color-mix(in srgb, var(--text) 35%, transparent);
   }
   @media (max-width: 780px) {
     .hero-inner { grid-template-columns: 1fr; }

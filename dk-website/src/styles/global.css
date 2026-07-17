@@ -1,18 +1,19 @@
 :root {
-  /* Color — pastel, artsy daylight palette: warm cream paper with a
-     terracotta / mint / mustard trio for playful accents. */
-  --bg: #FBF1E7;
-  --surface: #F5E4D8;
-  --surface-line: #E9D2C0;
-  --text: #33261F;
-  --text-muted: #7A695C;
+  /* Color — lilac-leaning pastel base, with room for hard, saturated
+     pops (violet / mint / yellow) rather than everything softened. */
+  --bg: #FAF7FC;
+  --surface: #F1E9F9;
+  --surface-line: #E0CFEF;
+  --text: #221A2E;
+  --text-muted: #6E6280;
 
-  --accent: #D9603F;        /* terracotta */
-  --accent-soft: #F3C9BC;
-  --accent-deep: #3F8F81;   /* mint */
-  --accent-deep-soft: #C9E8E0;
-  --accent-alt: #C98A2E;    /* mustard */
-  --accent-alt-soft: #F3DFAE;
+  --accent: #7C4DDB;         /* vivid violet/lilac */
+  --accent-soft: #DCC9F3;
+  --accent-deep: #0E9D74;    /* vivid mint/green */
+  --accent-deep-soft: #BFEEDD;
+  --accent-alt: #B8860B;     /* deep gold (text-safe yellow) */
+  --accent-alt-soft: #FBE7A5;
+  --pop-yellow: #FFD23F;     /* hard-contrast yellow, background use only */
 
   --font-display: "Space Grotesk", "Work Sans", system-ui, sans-serif;
   --font-body: "Work Sans", system-ui, sans-serif;
