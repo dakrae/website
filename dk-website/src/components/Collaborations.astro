@@ -4,11 +4,11 @@ const entries = (await getCollection('collaborations')).sort(
   (a, b) => a.data.order - b.data.order
 );
 ---
-<section id="kollaborationen">
+<section id="collaborations">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">Kollaborationen</p>
-      <h2>Ich spiele mit.</h2>
+      <p class="eyebrow">Collaborations</p>
+      <h2>I also play with.</h2>
     </div>
     <ul class="collab-list">
       {entries.map((entry) => (

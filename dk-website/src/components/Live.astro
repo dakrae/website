@@ -1,13 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
-// Hinweis: Sortierung nach Datum sinnvoll, sobald echte Daten (TT.MM.JJ) eingetragen sind.
+// Note: sorting by date makes sense once real dates (DD.MM.YY) are entered.
 const shows = await getCollection('shows');
 ---
 <section id="live">
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow">Live</p>
-      <h2>Kommende Shows.</h2>
+      <h2>Upcoming shows.</h2>
     </div>
     <ol class="show-list">
       {shows.map((show) => (

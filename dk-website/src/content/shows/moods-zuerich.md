@@ -1,7 +1,7 @@
 ---
-date: "TT.MM.JJ"
+date: "DD.MM.YY"
 act: "loophole"
 venue: "Moods"
-city: "Zürich"
+city: "Zurich"
 url: "https://www.moods.ch"
 ---
