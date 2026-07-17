@@ -1,26 +1,22 @@
 :root {
-  /* Color — lilac-leaning pastel base, with room for hard, saturated
-     pops (violet / mint / yellow) rather than everything softened. */
-  --bg: #FAF7FC;
-  --surface: #F1E9F9;
-  --surface-line: #E0CFEF;
-  --text: #221A2E;
-  --text-muted: #6E6280;
+  /* Color — quiet lilac paper, near-black ink, with saturated accents
+     (violet / mint / yellow) used sparingly as editorial punctuation. */
+  --bg: #F4F1F7;
+  --surface: #ECE7F2;
+  --surface-line: #D8D0E2;
+  --text: #1A1622;
+  --text-muted: #726A80;
 
-  --accent: #7C4DDB;         /* vivid violet/lilac */
-  --accent-soft: #DCC9F3;
-  --accent-deep: #0E9D74;    /* vivid mint/green */
-  --accent-deep-soft: #BFEEDD;
-  --accent-alt: #B8860B;     /* deep gold (text-safe yellow) */
-  --accent-alt-soft: #FBE7A5;
-  --pop-yellow: #FFD23F;     /* hard-contrast yellow, background use only */
+  --accent: #6D3BE4;         /* violet */
+  --accent-deep: #0E9D74;    /* mint */
+  --accent-alt: #F2C200;     /* yellow */
 
   --font-display: "Space Grotesk", "Work Sans", system-ui, sans-serif;
   --font-body: "Work Sans", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
-  --measure: 68ch;
-  --section-pad: clamp(4rem, 10vw, 8rem);
+  --measure: 60ch;
+  --section-pad: clamp(5rem, 12vw, 10rem);
 }
 
 * { box-sizing: border-box; }
@@ -65,55 +61,52 @@ img { max-width: 100%; display: block; }
 
 .eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.14em;
-  color: var(--accent);
-  display: inline-flex;
-  gap: 0.5em;
-  margin-bottom: 1.25rem;
-}
-
-.eyebrow .beat {
-  opacity: 0.4;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
   color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  margin-bottom: 2rem;
 }
-.eyebrow .beat:nth-child(2) { color: var(--accent-deep); }
-.eyebrow .beat:nth-child(3) { color: var(--accent-alt); }
-.eyebrow .beat:nth-child(4) { color: var(--accent); }
-.eyebrow .beat.is-one {
-  opacity: 1;
-  color: var(--accent);
+.eyebrow::before {
+  content: "";
+  width: 1.6rem;
+  height: 1px;
+  background: var(--accent);
 }
 
 h1, h2, h3 {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
+  letter-spacing: -0.02em;
   margin: 0;
 }
 
 h2 {
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.05;
   color: var(--text);
 }
 
 section {
   padding-block: var(--section-pad);
-  border-top: 2px dotted var(--surface-line);
+  border-top: 1px solid var(--surface-line);
 }
 
 .section-head {
-  margin-bottom: 2.5rem;
+  margin-bottom: 3.5rem;
 }
 
 .link-underline {
   text-decoration: underline;
-  text-decoration-color: transparent;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
-  transition: text-decoration-color 0.2s ease, color 0.2s ease;
+  text-decoration-color: var(--surface-line);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+  transition: text-decoration-color 0.25s ease, color 0.25s ease;
 }
 .link-underline:hover {
   text-decoration-color: var(--accent);
-  text-decoration-style: wavy;
   color: var(--accent);
 }

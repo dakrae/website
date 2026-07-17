@@ -12,13 +12,15 @@ const entries = (await getCollection('collaborations')).sort(
     </div>
     <ul class="collab-list">
       {entries.map((entry, i) => (
-        <li class={`chip chip-${i % 3}`}>
+        <li class="collab-row">
+          <span class="idx">{String(i + 1).padStart(2, '0')}</span>
           {entry.data.url ? (
-            <a href={entry.data.url} target="_blank" rel="noopener">
-              {entry.data.name}
+            <a class="name" href={entry.data.url} target="_blank" rel="noopener">
+              <span class="name-text">{entry.data.name}</span>
+              <span class="arrow" aria-hidden="true">↗</span>
             </a>
           ) : (
-            <span>{entry.data.name}</span>
+            <span class="name"><span class="name-text">{entry.data.name}</span></span>
           )}
         </li>
       ))}
@@ -31,22 +33,43 @@ const entries = (await getCollection('collaborations')).sort(
     list-style: none;
     margin: 0;
     padding: 0;
+    border-top: 1px solid var(--surface-line);
+  }
+  .collab-row {
+    border-bottom: 1px solid var(--surface-line);
+  }
+  .collab-row {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    align-items: baseline;
+    padding-block: 1.4rem;
+  }
+  .idx {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    padding-top: 0.5rem;
+  }
+  .name {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.9rem 1rem;
-  }
-  .chip {
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
     font-family: var(--font-display);
-    font-weight: 600;
-    font-size: clamp(1.05rem, 2vw, 1.3rem);
-    border-radius: 999px;
-    padding: 0.6rem 1.4rem;
-    transform: rotate(-2deg);
-    transition: transform 0.15s ease;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    line-height: 1;
+    transition: color 0.25s ease;
   }
-  .chip:nth-child(even) { transform: rotate(2deg); }
-  .chip:hover { transform: rotate(0deg) scale(1.04); }
-  .chip-0 { background: var(--accent); color: var(--bg); }
-  .chip-1 { background: var(--accent-deep-soft); color: var(--accent-deep); }
-  .chip-2 { background: var(--pop-yellow); color: var(--text); }
+  a.name:hover { color: var(--accent); }
+  .arrow {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    transition: transform 0.25s ease, color 0.25s ease;
+  }
+  a.name:hover .arrow {
+    color: var(--accent);
+    transform: translate(3px, -3px);
+  }
 </style>
