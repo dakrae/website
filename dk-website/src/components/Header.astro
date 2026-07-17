@@ -1,7 +1,7 @@
 ---
 // TODO Dave: check/add social links.
 const socials = [
-  { label: "Instagram", url: "https://www.instagram.com/" },
+  { label: "Instagram", url: "https://www.instagram.com/davidkrae/" },
 ];
 ---
 <header class="header">
@@ -27,7 +27,7 @@ const socials = [
     z-index: 10;
     background: color-mix(in srgb, var(--bg) 88%, transparent);
     backdrop-filter: blur(6px);
-    border-bottom: 1px solid var(--surface-line);
+    border-bottom: 2px dotted var(--surface-line);
   }
   .header-inner {
     display: flex;
@@ -41,7 +41,7 @@ const socials = [
   .wordmark {
     font-family: var(--font-display);
     font-size: 1.15rem;
-    font-style: italic;
+    font-weight: 600;
     letter-spacing: 0.01em;
   }
   .nav, .socials {

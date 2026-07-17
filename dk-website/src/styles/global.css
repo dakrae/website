@@ -1,15 +1,20 @@
 :root {
-  /* Color — warm, dark studio-at-night palette. Not pure black: a charcoal
-     with a hint of wood/brass warmth, like a room lit by one amp light. */
-  --bg: #15120F;
-  --surface: #1E1A16;
-  --surface-line: #2C2620;
-  --text: #EDE6DA;
-  --text-muted: #9C9184;
-  --accent: #C68B3A;       /* brass / cymbal */
-  --accent-deep: #8A4632;  /* mahogany shell */
+  /* Color — pastel, artsy daylight palette: warm cream paper with a
+     terracotta / mint / mustard trio for playful accents. */
+  --bg: #FBF1E7;
+  --surface: #F5E4D8;
+  --surface-line: #E9D2C0;
+  --text: #33261F;
+  --text-muted: #7A695C;
 
-  --font-display: "Instrument Serif", Georgia, serif;
+  --accent: #D9603F;        /* terracotta */
+  --accent-soft: #F3C9BC;
+  --accent-deep: #3F8F81;   /* mint */
+  --accent-deep-soft: #C9E8E0;
+  --accent-alt: #C98A2E;    /* mustard */
+  --accent-alt-soft: #F3DFAE;
+
+  --font-display: "Space Grotesk", "Work Sans", system-ui, sans-serif;
   --font-body: "Work Sans", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
@@ -68,27 +73,31 @@ img { max-width: 100%; display: block; }
 }
 
 .eyebrow .beat {
-  opacity: 0.45;
+  opacity: 0.4;
+  color: var(--text-muted);
 }
+.eyebrow .beat:nth-child(2) { color: var(--accent-deep); }
+.eyebrow .beat:nth-child(3) { color: var(--accent-alt); }
+.eyebrow .beat:nth-child(4) { color: var(--accent); }
 .eyebrow .beat.is-one {
   opacity: 1;
+  color: var(--accent);
 }
 
 h1, h2, h3 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 600;
   margin: 0;
 }
 
 h2 {
   font-size: clamp(1.8rem, 4vw, 2.6rem);
-  font-style: italic;
   color: var(--text);
 }
 
 section {
   padding-block: var(--section-pad);
-  border-top: 1px solid var(--surface-line);
+  border-top: 2px dotted var(--surface-line);
 }
 
 .section-head {
@@ -96,10 +105,14 @@ section {
 }
 
 .link-underline {
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.15s ease, color 0.15s ease;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s ease, color 0.2s ease;
 }
 .link-underline:hover {
-  border-color: var(--accent);
+  text-decoration-color: var(--accent);
+  text-decoration-style: wavy;
   color: var(--accent);
 }

@@ -35,7 +35,7 @@ const shows = await getCollection('shows');
     list-style: none;
     margin: 0;
     padding: 0;
-    border-top: 1px solid var(--surface-line);
+    border-top: 2px dotted var(--surface-line);
   }
   .show-row {
     display: grid;
@@ -43,11 +43,11 @@ const shows = await getCollection('shows');
     gap: 1rem;
     align-items: baseline;
     padding-block: 0.9rem;
-    border-bottom: 1px solid var(--surface-line);
+    border-bottom: 2px dotted var(--surface-line);
     font-family: var(--font-mono);
     font-size: 0.92rem;
   }
-  .date { color: var(--accent); }
+  .date { color: var(--accent); font-weight: 500; }
   .act { color: var(--text-muted); }
   .city { color: var(--text-muted); text-align: right; }
   @media (max-width: 640px) {

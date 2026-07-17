@@ -11,10 +11,10 @@ const entries = (await getCollection('collaborations')).sort(
       <h2>I also play with.</h2>
     </div>
     <ul class="collab-list">
-      {entries.map((entry) => (
-        <li>
+      {entries.map((entry, i) => (
+        <li class={`chip chip-${i % 3}`}>
           {entry.data.url ? (
-            <a class="link-underline" href={entry.data.url} target="_blank" rel="noopener">
+            <a href={entry.data.url} target="_blank" rel="noopener">
               {entry.data.name}
             </a>
           ) : (
@@ -33,9 +33,20 @@ const entries = (await getCollection('collaborations')).sort(
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem 2.5rem;
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: clamp(1.4rem, 3vw, 2rem);
+    gap: 0.9rem 1rem;
   }
+  .chip {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    border-radius: 999px;
+    padding: 0.6rem 1.4rem;
+    transform: rotate(-2deg);
+    transition: transform 0.15s ease;
+  }
+  .chip:nth-child(even) { transform: rotate(2deg); }
+  .chip:hover { transform: rotate(0deg) scale(1.04); }
+  .chip-0 { background: var(--accent-soft); color: var(--accent); }
+  .chip-1 { background: var(--accent-deep-soft); color: var(--accent-deep); }
+  .chip-2 { background: var(--accent-alt-soft); color: var(--accent-alt); }
 </style>
