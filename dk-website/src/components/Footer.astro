@@ -1,0 +1,25 @@
+---
+const year = new Date().getFullYear();
+---
+<footer>
+  <div class="wrap footer-inner">
+    <span>© {year} David Krähenbühl</span>
+    <a class="link-underline" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</footer>
+
+<style>
+  footer {
+    padding-block: 2.5rem;
+    border-top: 1px solid var(--surface-line);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+</style>

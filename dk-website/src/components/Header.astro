@@ -1,0 +1,56 @@
+---
+// TODO Dave: Social-Links prüfen/ergänzen.
+const socials = [
+  { label: "Instagram", url: "https://www.instagram.com/" },
+];
+---
+<header class="header">
+  <div class="wrap header-inner">
+    <a href="/" class="wordmark">David Krähenbühl</a>
+    <nav class="nav">
+      <a class="link-underline" href="#kollaborationen">Kollaborationen</a>
+      <a class="link-underline" href="#live">Live</a>
+      <a class="link-underline" href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="socials">
+      {socials.map((s) => (
+        <a class="link-underline" href={s.url} target="_blank" rel="noopener">{s.label}</a>
+      ))}
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--surface-line);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 1.1rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+  .wordmark {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-style: italic;
+    letter-spacing: 0.01em;
+  }
+  .nav, .socials {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .socials { color: var(--text-muted); }
+  @media (max-width: 640px) {
+    .socials { display: none; }
+    .nav { gap: 1rem; font-size: 0.78rem; }
+  }
+</style>

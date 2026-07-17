@@ -1,0 +1,67 @@
+---
+import { getCollection } from 'astro:content';
+// Hinweis: Sortierung nach Datum sinnvoll, sobald echte Daten (TT.MM.JJ) eingetragen sind.
+const shows = await getCollection('shows');
+---
+<section id="live">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Live</p>
+      <h2>Kommende Shows.</h2>
+    </div>
+    <ol class="show-list">
+      {shows.map((show) => (
+        <li class="show-row">
+          <span class="date">{show.data.date}</span>
+          <span class="act">{show.data.act}</span>
+          <span class="venue">
+            {show.data.url ? (
+              <a class="link-underline" href={show.data.url} target="_blank" rel="noopener">
+                {show.data.venue}
+              </a>
+            ) : (
+              show.data.venue
+            )}
+          </span>
+          <span class="city">{show.data.city}</span>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .show-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--surface-line);
+  }
+  .show-row {
+    display: grid;
+    grid-template-columns: 6rem 1fr 1.4fr 1fr;
+    gap: 1rem;
+    align-items: baseline;
+    padding-block: 0.9rem;
+    border-bottom: 1px solid var(--surface-line);
+    font-family: var(--font-mono);
+    font-size: 0.92rem;
+  }
+  .date { color: var(--accent); }
+  .act { color: var(--text-muted); }
+  .city { color: var(--text-muted); text-align: right; }
+  @media (max-width: 640px) {
+    .show-row {
+      grid-template-columns: 4.2rem 1fr;
+      grid-template-areas:
+        "date act"
+        "date venue"
+        "date city";
+      row-gap: 0.15rem;
+    }
+    .date { grid-area: date; }
+    .act { grid-area: act; }
+    .venue { grid-area: venue; }
+    .city { grid-area: city; text-align: left; }
+  }
+</style>

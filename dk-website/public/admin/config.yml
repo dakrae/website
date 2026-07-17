@@ -1,0 +1,29 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "shows"
+    label: "Live-Termine"
+    folder: "src/content/shows"
+    create: true
+    slug: "{{fields.venue}}-{{fields.date}}"
+    fields:
+      - { label: "Datum (TT.MM.JJ)", name: "date", widget: "string" }
+      - { label: "Act", name: "act", widget: "string", default: "loophole" }
+      - { label: "Venue", name: "venue", widget: "string" }
+      - { label: "Stadt", name: "city", widget: "string" }
+      - { label: "Link (optional)", name: "url", widget: "string", required: false }
+
+  - name: "collaborations"
+    label: "Kollaborationen"
+    folder: "src/content/collaborations"
+    create: true
+    slug: "{{fields.name}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Link (optional)", name: "url", widget: "string", required: false }
+      - { label: "Reihenfolge", name: "order", widget: "number", default: 0 }

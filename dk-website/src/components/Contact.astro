@@ -1,0 +1,29 @@
+---
+// TODO Dave: Mail-Adresse ersetzen.
+const email = "hallo@davidkraehenbuehl.ch";
+---
+<section id="kontakt">
+  <div class="wrap">
+    <p class="eyebrow">Kontakt</p>
+    <h2>Get in touch.</h2>
+    <p class="lead">
+      Offen für Live-Shows, Studio-Sessions und neue Projekte.
+    </p>
+    <a class="mail" href={`mailto:${email}`}>{email} ↗</a>
+  </div>
+</section>
+
+<style>
+  .lead {
+    max-width: var(--measure);
+    color: var(--text-muted);
+    margin: 1.25rem 0 2rem;
+  }
+  .mail {
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 0.15rem;
+  }
+  .mail:hover { color: var(--accent); }
+</style>
