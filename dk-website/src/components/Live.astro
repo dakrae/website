@@ -1,7 +1,19 @@
 ---
 import { getCollection } from 'astro:content';
-// Note: sorting by date makes sense once real dates (DD.MM.YY) are entered.
-const shows = await getCollection('shows');
+
+// Parse "DD.MM.YYYY" (or "DD.MM.YY") into a sortable timestamp;
+// unparseable dates sort to the end.
+function dateKey(date: string): number {
+  const m = date.trim().match(/^(\d{1,2})\.(\d{1,2})\.(\d{2,4})$/);
+  if (!m) return Number.MAX_SAFE_INTEGER;
+  const [, d, mo, y] = m;
+  const year = y.length === 2 ? 2000 + Number(y) : Number(y);
+  return new Date(year, Number(mo) - 1, Number(d)).getTime();
+}
+
+const shows = (await getCollection('shows')).sort(
+  (a, b) => dateKey(a.data.date) - dateKey(b.data.date)
+);
 ---
 <section id="live">
   <div class="wrap">
