@@ -3,111 +3,96 @@ import { getCollection } from 'astro:content';
 const entries = (await getCollection('collaborations')).sort(
   (a, b) => a.data.order - b.data.order
 );
-const accents = ['var(--accent)', 'var(--accent-deep)', 'var(--accent-alt)'];
+const chips = ['var(--lavender)', 'var(--turquoise)', 'var(--pink)'];
 ---
 <section id="collaborations">
   <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">Collaborations</p>
-      <h2>I currently play with.</h2>
-    </div>
-    <ul class="collab-grid">
+    <p class="eyebrow">(01) Collaborations</p>
+    <h2>I currently play with.</h2>
+    <div class="grid">
       {entries.map((entry, i) => {
         const Tag = entry.data.url ? 'a' : 'div';
         const attrs = entry.data.url
           ? { href: entry.data.url, target: '_blank', rel: 'noopener' }
           : {};
         return (
-          <li>
-            <Tag class="card" {...attrs}>
-              <div class="thumb" style={`--ph:${accents[i % accents.length]}`}>
-                {entry.data.image ? (
-                  <img src={entry.data.image} alt={entry.data.name} loading="lazy" />
-                ) : (
-                  <span class="thumb-empty" aria-hidden="true">{entry.data.name.charAt(0)}</span>
-                )}
-              </div>
-              <div class="meta">
-                <span class="name">{entry.data.name}</span>
-                {entry.data.url && <span class="arrow" aria-hidden="true">↗</span>}
-              </div>
-            </Tag>
-          </li>
+          <Tag class="card" style={`--chip:${chips[i % chips.length]}`} {...attrs}>
+            <span class="photo">
+              {entry.data.image ? (
+                <img src={entry.data.image} alt={entry.data.name} loading="lazy" />
+              ) : (
+                <span class="photo-ph" aria-hidden="true">{entry.data.name}</span>
+              )}
+            </span>
+            <span class="row">
+              {entry.data.name}
+              {entry.data.url && <span class="arrow" aria-hidden="true">↗</span>}
+            </span>
+          </Tag>
         );
       })}
-    </ul>
+    </div>
   </div>
 </section>
 
 <style>
-  .collab-grid {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  section { padding: 100px 32px 0; }
+  .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(1.5rem, 3vw, 2.5rem);
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
   }
   .card {
-    display: block;
+    text-decoration: none;
+    border: 3px solid var(--ink);
+    border-radius: 20px;
+    background: var(--card-bg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
     color: inherit;
   }
-  .thumb {
-    position: relative;
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    background: var(--surface);
+  a.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 8px 8px 0 var(--chip);
+    color: inherit;
   }
-  .thumb img {
+  .photo {
+    display: block;
+    aspect-ratio: 4 / 3;
+    border-bottom: 3px solid var(--ink);
+    position: relative;
+    background: color-mix(in srgb, var(--chip) 45%, var(--card-bg));
+  }
+  .photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    position: absolute;
+    inset: 0;
   }
-  .thumb-empty {
+  .photo-ph {
     position: absolute;
     inset: 0;
     display: grid;
     place-items: center;
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: clamp(3rem, 7vw, 5rem);
-    color: color-mix(in srgb, var(--ph) 55%, transparent);
-    background:
-      radial-gradient(120% 120% at 30% 20%,
-        color-mix(in srgb, var(--ph) 14%, var(--surface)),
-        var(--surface));
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--ink) 55%, transparent);
   }
-  a.card:hover .thumb img { transform: scale(1.04); }
-  .meta {
+  .row {
     display: flex;
-    align-items: baseline;
     justify-content: space-between;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-  .name {
-    font-family: var(--font-display);
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    font-size: clamp(1.2rem, 2.4vw, 1.6rem);
-    line-height: 1.1;
-    transition: color 0.25s ease;
+    align-items: center;
+    gap: 8px;
+    padding: 20px 22px;
+    font-size: 20px;
   }
   .arrow {
-    font-size: 1rem;
-    color: var(--text-muted);
-    transition: transform 0.25s ease, color 0.25s ease;
-  }
-  a.card:hover .name { color: var(--accent); }
-  a.card:hover .arrow {
-    color: var(--accent);
-    transform: translate(3px, -3px);
-  }
-  @media (max-width: 720px) {
-    .collab-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 460px) {
-    .collab-grid { grid-template-columns: 1fr; }
+    color: var(--chip);
+    -webkit-text-stroke: 1px var(--ink);
+    font-size: 24px;
   }
 </style>
