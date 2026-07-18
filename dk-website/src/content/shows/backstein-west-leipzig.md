@@ -1,7 +1,7 @@
 ---
-date: "DD.MM.YY"
-act: "loophole"
-venue: "Backstein West"
-city: "Leipzig"
+date: 17.10.2026
+act: loophole
+venue: Backstein West
+city: Leipzig
 url: ""
 ---
