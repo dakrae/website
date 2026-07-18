@@ -16,6 +16,7 @@ const collaborations = defineCollection({
   schema: z.object({
     name: z.string(),        // e.g. "loophole"
     url: z.string().optional(),
+    image: z.string().optional(),  // e.g. "/images/james-gruntz.jpg"
     order: z.number().default(0)
   })
 });
