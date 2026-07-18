@@ -53,13 +53,6 @@ img { max-width: 100%; display: block; }
   margin: 0 auto;
 }
 
-.eyebrow {
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--violet);
-}
-
 h1, h2, h3 {
   font-family: var(--font-mono);
   margin: 0;
