@@ -31,13 +31,13 @@ logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 # Add site links in Decap CMS (optional)
 site_url: https://davidkraehenbuehl.netlify.app
 
-media_folder: "public/images"
+media_folder: "dk-website/public/images"
 public_folder: "/images"
 
 collections:
   - name: "shows"
     label: "Live Dates"
-    folder: "src/content/shows"
+    folder: "dk-website/src/content/shows"
     create: true
     slug: "{{fields.venue}}-{{fields.date}}"
     fields:
@@ -49,7 +49,7 @@ collections:
 
   - name: "collaborations"
     label: "Collaborations"
-    folder: "src/content/collaborations"
+    folder: "dk-website/src/content/collaborations"
     create: true
     slug: "{{fields.name}}"
     fields:
