@@ -13,10 +13,11 @@
     <div class="wobble-star" aria-hidden="true">✳</div>
   </div>
   <div class="wrap media-block">
-    <div class="frame">
-      <img src="/images/hero.jpg" alt="David Krähenbühl playing drums" />
+    <div class="media-inner">
+      <div class="frame">
+        <img src="/images/dscf0580.jpg" alt="David Krähenbühl" />
+      </div>
     </div>
-    <div class="sticker">groovy &amp; atmospheric</div>
   </div>
 </header>
 
@@ -63,11 +64,14 @@
   }
   .media-block {
     margin-top: 56px;
+  }
+  .media-inner {
     position: relative;
+    max-width: 600px;
   }
   .frame {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 4 / 5;
     border: 3px solid var(--ink);
     border-radius: 24px;
     box-shadow: 10px 10px 0 var(--violet);
@@ -78,17 +82,5 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-  .sticker {
-    position: absolute;
-    bottom: -26px;
-    right: 40px;
-    background: var(--turquoise);
-    border: 3px solid var(--ink);
-    border-radius: 999px;
-    padding: 14px 24px;
-    font-size: 14px;
-    transform: rotate(3deg);
-    box-shadow: 5px 5px 0 var(--ink);
   }
 </style>
