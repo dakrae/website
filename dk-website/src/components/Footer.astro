@@ -2,24 +2,24 @@
 const year = new Date().getFullYear();
 ---
 <footer>
-  <div class="wrap footer-inner">
-    <span>© {year} David Krähenbühl</span>
-    <a class="link-underline" href="https://www.instagram.com/davidkrae/" target="_blank" rel="noopener">Instagram</a>
-  </div>
+  <span>© {year} David Krähenbühl</span>
+  <a href="https://www.instagram.com/davidkrae/" target="_blank" rel="noopener">Instagram ↗</a>
 </footer>
 
 <style>
   footer {
-    padding-block: 2.5rem;
-    border-top: 1px solid var(--surface-line);
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--text-muted);
-  }
-  .footer-inner {
+    border-top: 3px solid var(--ink);
+    padding: 24px 32px;
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
+    align-items: center;
+    font-size: 13px;
+    background: var(--ink);
+    color: var(--lavender-pale);
   }
+  footer a {
+    color: var(--yellow);
+    text-decoration: none;
+  }
+  footer a:hover { color: #fff; }
 </style>
