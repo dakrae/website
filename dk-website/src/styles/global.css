@@ -1,16 +1,15 @@
 :root {
-  /* Color — neo-brutalist: ink lines on bright pastels, hard offset shadows.
-     Page background default is pale yellow; lavender is the sanctioned alt. */
+  /* Color — neo-brutalist: ink lines, hard offset shadows, white page,
+     light-lavender surfaces, saturated accents. */
   --ink: #1A1030;
-  --page-bg: #F7FF9E;
-  --page-bg-alt: #EDE6FF;
+  --page-bg: #FFFFFF;
+  --surface: #F0EAFC;
   --yellow: #F2FF26;
   --violet: #6B2FD6;
   --lavender: #C8B6FF;
   --lavender-pale: #EDE6FF;
   --turquoise: #3BE8D2;
   --pink: #FF6FB5;
-  --card-bg: #FFFDF2;
 
   --font-mono: "Space Mono", "Andale Mono", "Lucida Console", monospace;
 
