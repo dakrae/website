@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>David Krähenbühl — Design Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1A1030;
+  --bg:#FFFFFF;
+  --surface:#F0EAFC;      /* light lavender: pills, cards, tables */
+  --yellow:#F2FF26;
+  --violet:#6B2FD6;
+  --lavender:#C8B6FF;     /* strong lavender: contact card, hero shadow */
+  --lavender-pale:#EDE6FF;
+  --turquoise:#3BE8D2;
+  --pink:#FF6FB5;
+  --font-mono:"Space Mono",monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-mono);font-size:16px;line-height:1.7;overflow-x:hidden}
+::selection{background:var(--yellow);color:var(--ink)}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1200px;margin:0 auto}
+h1,h2{margin:0}
+h2{font-size:clamp(36px,5vw,64px);letter-spacing:-.03em;margin:12px 0 40px}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes wobble{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(4deg)}}
+
+/* ===== Nav ===== */
+.nav{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:3px solid var(--ink)}
+.nav-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 32px}
+.nav a{text-decoration:none}
+.wordmark{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:700;letter-spacing:.02em;white-space:nowrap;border:2px solid var(--ink);background:var(--surface);border-radius:999px;padding:8px 18px;box-shadow:4px 4px 0 var(--ink);transition:background .15s,transform .15s}
+.wordmark:hover{background:var(--yellow);transform:rotate(-2deg)}
+.wordmark .dot{color:var(--violet)}
+.links{display:flex;align-items:center;gap:12px;font-size:13px;text-transform:uppercase}
+.pill{border:2px solid var(--ink);border-radius:999px;padding:6px 16px;background:var(--surface);box-shadow:2px 2px 0 var(--ink);transition:background .15s,box-shadow .15s,transform .15s}
+.pill:hover{box-shadow:3px 3px 0 var(--ink)}
+.pill.p-lavender:hover{background:var(--lavender);transform:rotate(-2deg)}
+.pill.p-turquoise:hover{background:var(--turquoise);transform:rotate(2deg)}
+.pill.p-pink:hover{background:var(--pink);transform:rotate(-2deg)}
+.pill.p-yellow:hover{background:var(--yellow);transform:rotate(2deg)}
+.insta{border:2px solid var(--ink);border-radius:999px;padding:6px 16px;background:var(--ink);color:var(--yellow);box-shadow:2px 2px 0 var(--violet);transition:background .15s,color .15s,box-shadow .15s,transform .15s}
+.insta:hover{background:var(--violet);color:#fff;box-shadow:3px 3px 0 var(--ink);transform:rotate(-2deg)}
+.menu-btn{display:none;font-family:var(--font-mono);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border:2px solid var(--ink);border-radius:999px;padding:8px 16px;background:var(--surface);color:var(--ink);cursor:pointer;box-shadow:3px 3px 0 var(--ink);min-height:44px}
+.menu-btn:active{background:var(--yellow);box-shadow:1px 1px 0 var(--ink);transform:translate(2px,2px)}
+.mobile-menu{display:none;flex-direction:column;gap:12px;padding:8px 20px 20px;border-top:2px dashed var(--ink);font-size:15px;text-transform:uppercase;background:var(--bg)}
+.mobile-menu a{border:2px solid var(--ink);border-radius:999px;padding:12px 20px;text-align:center;min-height:44px;display:flex;align-items:center;justify-content:center}
+.mobile-menu a:first-child{margin-top:12px}
+.mobile-menu a:active{box-shadow:3px 3px 0 var(--ink)}
+.mm-lavender{background:var(--lavender)}
+.mm-turquoise{background:var(--turquoise)}
+.mm-pink{background:var(--pink)}
+.mm-yellow{background:var(--yellow)}
+.mm-insta{background:var(--ink);color:var(--yellow)}
+@media (max-width:760px){
+  .links{display:none}
+  .menu-btn{display:inline-block}
+  .mobile-menu.open{display:flex}
+}
+
+/* ===== Hero ===== */
+.hero{padding:64px 32px 0}
+.hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,72px);align-items:center}
+.head-block{position:relative}
+.badge{display:inline-flex;align-items:center;gap:10px;border:2px dashed var(--ink);border-radius:999px;padding:6px 16px;font-size:13px;background:var(--yellow);transform:rotate(-2deg)}
+.hero h1{font-size:clamp(48px,6.5vw,92px);line-height:.95;margin:28px 0 0;letter-spacing:-.04em;text-transform:uppercase}
+.hero .dot{color:var(--violet)}
+.bio{max-width:520px;font-size:16px;line-height:1.7;margin:36px 0 0}
+.wobble-star{position:absolute;top:-8px;right:0;font-size:72px;color:var(--pink);animation:wobble 5s ease-in-out infinite;user-select:none}
+.frame{width:100%;aspect-ratio:4/5;border:3px solid var(--ink);border-radius:24px;box-shadow:10px 10px 0 var(--lavender);overflow:hidden;background:var(--surface)}
+.frame img{width:100%;height:100%;object-fit:cover}
+@media (max-width:760px){
+  .hero-inner{grid-template-columns:1fr}
+  .media-block{max-width:480px}
+}
+
+/* ===== Marquee ===== */
+.band{margin-top:80px;background:var(--ink);color:var(--yellow);overflow:hidden;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);transform:rotate(-1deg) scale(1.02)}
+.track{display:flex;width:max-content;animation:marquee 22s linear infinite;padding:14px 0;font-size:18px;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap}
+.track span{padding-right:32px}
+
+/* ===== Collaborations ===== */
+.collabs{padding:100px 32px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.card{text-decoration:none;border:3px solid var(--ink);border-radius:20px;background:var(--surface);display:flex;flex-direction:column;overflow:hidden;transition:transform .2s,box-shadow .2s;color:inherit}
+.card:hover{transform:translateY(-6px)}
+.card.c-lavender:hover{box-shadow:8px 8px 0 var(--lavender)}
+.card.c-turquoise:hover{box-shadow:8px 8px 0 var(--turquoise)}
+.card.c-pink:hover{box-shadow:8px 8px 0 var(--pink)}
+.card .photo{display:block;aspect-ratio:4/3;border-bottom:3px solid var(--ink);position:relative}
+.c-lavender .photo{background:#E4DCF8}
+.c-turquoise .photo{background:#B4F4E9}
+.c-pink .photo{background:#FCC4DE}
+.card .photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.card .row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:20px 22px;font-size:20px}
+.arrow{-webkit-text-stroke:1px var(--ink);font-size:24px}
+.c-lavender .arrow{color:var(--lavender)}
+.c-turquoise .arrow{color:var(--turquoise)}
+.c-pink .arrow{color:var(--pink)}
+@media (max-width:760px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .card .row{padding:12px 14px;font-size:15px}
+}
+
+/* ===== Shows ===== */
+.live{padding:110px 32px 0}
+.table-card{border:3px solid var(--ink);border-radius:20px;overflow:hidden;background:var(--surface)}
+.show-row{display:grid;grid-template-columns:110px 1fr 1fr 120px;gap:16px;align-items:baseline;padding:18px 24px;border-bottom:2px dashed var(--ink);font-size:15px;transition:background .15s,color .15s}
+.show-row:hover{background:var(--violet);color:var(--yellow)}
+.show-row .date{font-size:13px}
+.show-row .bandname{text-transform:uppercase;letter-spacing:.05em}
+.show-row .city{text-align:right;font-size:13px}
+@media (max-width:760px){
+  .show-row{display:flex;flex-wrap:wrap;gap:2px 12px;padding:14px 16px;font-size:13px}
+  .show-row .city{margin-left:auto}
+}
+
+/* ===== Lessons ===== */
+.lessons{padding:110px 32px 0}
+.lessons-card{border:3px solid var(--ink);border-radius:20px;background:var(--surface);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);overflow:hidden}
+.copy{padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;gap:20px;justify-content:center}
+.copy p{font-size:16px;line-height:1.7;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{border:2px dashed var(--ink);border-radius:999px;padding:4px 14px;font-size:13px}
+.chip-lavender{background:var(--lavender)}
+.chip-turquoise{background:var(--turquoise)}
+.chip-pink{background:var(--pink)}
+.cta{align-self:flex-start;text-decoration:none;background:var(--ink);color:var(--yellow);font-size:15px;padding:14px 26px;border-radius:999px;border:3px solid var(--ink);transition:background .2s,color .2s}
+.cta:hover{background:var(--violet);color:#fff}
+.lesson-photo{border-left:3px solid var(--ink);min-height:320px;background:var(--surface);display:flex;align-items:center;justify-content:center;padding:clamp(20px,3vw,40px)}
+.lesson-photo img{max-width:100%;max-height:400px;width:auto;height:auto;border:3px solid var(--ink);border-radius:12px;box-shadow:6px 6px 0 var(--ink)}
+@media (max-width:760px){
+  .lessons-card{grid-template-columns:1fr}
+  .lesson-photo{border-left:none;border-top:3px solid var(--ink);min-height:260px}
+}
+
+/* ===== Contact ===== */
+.contact{padding:120px 32px}
+.contact-card{background:var(--lavender);border:3px solid var(--ink);border-radius:28px;padding:clamp(40px,6vw,80px);box-shadow:10px 10px 0 var(--ink);position:relative}
+.contact-card h2{font-size:clamp(40px,6vw,80px);margin:12px 0 20px}
+.lead{font-size:16px;margin:0 0 36px;max-width:480px;line-height:1.7}
+.mail{display:inline-block;text-decoration:none;background:var(--ink);color:var(--yellow);font-size:clamp(16px,2.2vw,24px);padding:18px 32px;border-radius:999px;border:3px solid var(--ink);transition:background .2s,color .2s,transform .2s}
+.mail:hover{background:var(--pink);color:var(--ink);transform:rotate(-1.5deg)}
+.contact-star{position:absolute;top:-28px;right:48px;font-size:56px;color:var(--violet);animation:wobble 4s ease-in-out infinite;user-select:none}
+
+/* ===== Footer ===== */
+footer{border-top:3px solid var(--ink);padding:24px 32px;display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:space-between;align-items:center;font-size:13px;background:var(--ink);color:var(--lavender-pale)}
+footer a{color:var(--yellow);text-decoration:none}
+footer a:hover{color:#fff}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-bar">
+    <a href="#top" class="wordmark">DAVID KRÄHENBÜHL <span class="dot">●</span></a>
+    <div class="links">
+      <a href="#collaborations" class="pill p-lavender">Collaborations</a>
+      <a href="#live" class="pill p-turquoise">Live</a>
+      <a href="#lessons" class="pill p-pink">Lessons</a>
+      <a href="#contact" class="pill p-yellow">Contact</a>
+      <a href="https://www.instagram.com/davidkrae/" target="_blank" rel="noopener" class="insta">Instagram ↗</a>
+    </div>
+    <button class="menu-btn" aria-label="Menu" onclick="const m=document.querySelector('.mobile-menu');m.classList.toggle('open');this.textContent=m.classList.contains('open')?'Close ✕':'Menu ☰'">Menu ☰</button>
+  </div>
+  <div class="mobile-menu">
+    <a href="#collaborations" class="mm-lavender" onclick="closeMenu()">Collaborations</a>
+    <a href="#live" class="mm-turquoise" onclick="closeMenu()">Live</a>
+    <a href="#lessons" class="mm-pink" onclick="closeMenu()">Lessons</a>
+    <a href="#contact" class="mm-yellow" onclick="closeMenu()">Contact</a>
+    <a href="https://www.instagram.com/davidkrae/" target="_blank" rel="noopener" class="mm-insta" onclick="closeMenu()">Instagram ↗</a>
+  </div>
+</nav>
+
+<header id="top" class="hero">
+  <div class="wrap hero-inner">
+    <div class="head-block">
+      <div class="badge">✳ Session Drummer — Zurich</div>
+      <h1>David<br>Krähen—<br>bühl<span class="dot">.</span></h1>
+      <p class="bio">David Krähenbühl is a Zurich-based drummer. He works as a sideman and session musician in various pop and indie projects, and is co-leader of the instrumental trio loophole.</p>
+      <div class="wobble-star" aria-hidden="true">✳</div>
+    </div>
+    <div class="media-block">
+      <div class="frame"><img src="../assets/img01.jpg" alt="David Krähenbühl"></div>
+    </div>
+  </div>
+</header>
+
+<div class="band" aria-hidden="true">
+  <div class="track">
+    <span>Live Drumming ✳ Studio Sessions ✳ Backing Tracks ✳ Lessons ✳ </span>
+    <span>Live Drumming ✳ Studio Sessions ✳ Backing Tracks ✳ Lessons ✳ </span>
+  </div>
+</div>
+
+<section id="collaborations" class="collabs">
+  <div class="wrap">
+    <h2>I currently play with.</h2>
+    <div class="grid">
+      <a class="card c-lavender" href="https://www.jamesgruntz.com" target="_blank" rel="noopener">
+        <span class="photo"><img src="../assets/img02.jpg" alt="James Gruntz" loading="lazy"></span>
+        <span class="row">James Gruntz <span class="arrow" aria-hidden="true">↗</span></span>
+      </a>
+      <a class="card c-turquoise" href="https://marlinmusic.ch" target="_blank" rel="noopener">
+        <span class="photo"><img src="../assets/img03.jpg" alt="Marlin" loading="lazy"></span>
+        <span class="row">Marlin <span class="arrow" aria-hidden="true">↗</span></span>
+      </a>
+      <a class="card c-pink" href="https://www.loophole.ch" target="_blank" rel="noopener">
+        <span class="photo"><img src="../assets/img04.jpg" alt="loophole" loading="lazy"></span>
+        <span class="row">loophole <span class="arrow" aria-hidden="true">↗</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="live" class="live">
+  <div class="wrap">
+    <h2>Upcoming shows.</h2>
+    <div class="table-card">
+      <div class="show-row">
+        <span class="date">24.07.2026</span>
+        <span class="bandname">Marlin</span>
+        <span class="venue">Millers</span>
+        <span class="city">Zürich ●</span>
+      </div>
+      <div class="show-row">
+        <span class="date">16.10.2026</span>
+        <span class="bandname">loophole</span>
+        <span class="venue">artderkultur</span>
+        <span class="city">Dresden ●</span>
+      </div>
+      <div class="show-row">
+        <span class="date">17.10.2026</span>
+        <span class="bandname">loophole</span>
+        <span class="venue">Backstein West</span>
+        <span class="city">Leipzig ●</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lessons" class="lessons">
+  <div class="wrap">
+    <h2>Learn drums &amp; production.</h2>
+    <div class="lessons-card">
+      <div class="copy">
+        <p>Drum lessons from hip-hop to pop — Dilla swing, groove &amp; phrasing, playing in bands — plus mixing and producing with Logic &amp; Ableton Live. In Zurich, for beginners and advanced players, in German or English.</p>
+        <div class="chips">
+          <span class="chip chip-lavender">Drum lessons</span>
+          <span class="chip chip-turquoise">Groove &amp; phrasing</span>
+          <span class="chip chip-pink">Logic &amp; Ableton</span>
+        </div>
+        <a class="cta" href="https://www.instrumentor.ch/de/david-kraehenbuehl" target="_blank" rel="noopener">Book a trial lesson on Instrumentor ↗</a>
+      </div>
+      <div class="lesson-photo">
+        <img src="../assets/img05.jpg" alt="David Krähenbühl teaching drums" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap contact-card">
+    <h2>Get in touch.</h2>
+    <p class="lead">Open to live shows, studio sessions, and new projects.</p>
+    <a class="mail" href="mailto:hallo@davidkraehenbuehl.ch">hallo@davidkraehenbuehl.ch ↗</a>
+    <div class="contact-star" aria-hidden="true">✳</div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 David Krähenbühl</span>
+  <a href="https://www.instagram.com/davidkrae/" target="_blank" rel="noopener">Instagram ↗</a>
+</footer>
+
+<script>
+function closeMenu(){
+  const m=document.querySelector('.mobile-menu');
+  m.classList.remove('open');
+  document.querySelector('.menu-btn').textContent='Menu ☰';
+}
+</script>
+</body>
+</html>
