@@ -14,7 +14,15 @@ const instagram = 'https://www.instagram.com/davidkrae/';
       {links.map((l) => (
         <a href={l.href} class={`pill p-${l.color}`}>{l.label}</a>
       ))}
-      <a href={instagram} target="_blank" rel="noopener" class="insta">Instagram ↗</a>
+      <div class="socials">
+        <a href={instagram} target="_blank" rel="noopener" class="insta" aria-label="Instagram">
+          <svg class="ig" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="16.7" cy="7.3" r="1.2" fill="currentColor" stroke="none" />
+          </svg>
+        </a>
+      </div>
     </div>
     <button class="menu-btn" aria-label="Menu" aria-expanded="false">Menu ☰</button>
   </div>
@@ -22,7 +30,14 @@ const instagram = 'https://www.instagram.com/davidkrae/';
     {links.map((l) => (
       <a href={l.href} class={`mm-${l.color}`}>{l.label}</a>
     ))}
-    <a href={instagram} target="_blank" rel="noopener" class="mm-insta">Instagram ↗</a>
+    <a href={instagram} target="_blank" rel="noopener" class="mm-insta">
+      <svg class="ig" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="16.7" cy="7.3" r="1.2" fill="currentColor" stroke="none" />
+      </svg>
+      Instagram
+    </a>
   </div>
 </nav>
 
@@ -105,15 +120,25 @@ const instagram = 'https://www.instagram.com/davidkrae/';
   .pill.p-turquoise:hover { background: var(--turquoise); transform: rotate(2deg); }
   .pill.p-pink:hover { background: var(--pink); transform: rotate(-2deg); }
   .pill.p-yellow:hover { background: var(--yellow); transform: rotate(2deg); }
+  .socials {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 4px;
+  }
   .insta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border: 2px solid var(--ink);
     border-radius: 999px;
-    padding: 6px 16px;
+    padding: 7px;
     background: var(--ink);
     color: var(--yellow);
     box-shadow: 2px 2px 0 var(--violet);
     transition: background 0.15s, color 0.15s, box-shadow 0.15s, transform 0.15s;
   }
+  .insta .ig { display: block; }
   .insta:hover {
     background: var(--violet);
     color: #fff;
@@ -167,7 +192,8 @@ const instagram = 'https://www.instagram.com/davidkrae/';
   .mm-turquoise { background: var(--turquoise); }
   .mm-pink { background: var(--pink); }
   .mm-yellow { background: var(--yellow); }
-  .mm-insta { background: var(--ink); color: var(--yellow); }
+  .mm-insta { background: var(--ink); color: var(--yellow); gap: 8px; }
+  .mm-insta .ig { display: block; }
   @media (max-width: 760px) {
     .links { display: none; }
     .menu-btn { display: inline-block; }
