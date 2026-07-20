@@ -133,15 +133,14 @@ const instagram = 'https://www.instagram.com/davidkrae/';
     border: 2px solid var(--ink);
     border-radius: 999px;
     padding: 7px;
-    background: var(--ink);
-    color: var(--yellow);
-    box-shadow: 2px 2px 0 var(--violet);
-    transition: background 0.15s, color 0.15s, box-shadow 0.15s, transform 0.15s;
+    background: var(--surface);
+    color: var(--ink);
+    box-shadow: 2px 2px 0 var(--ink);
+    transition: background 0.15s, box-shadow 0.15s, transform 0.15s;
   }
   .insta .ig { display: block; }
   .insta:hover {
-    background: var(--violet);
-    color: #fff;
+    background: var(--pink);
     box-shadow: 3px 3px 0 var(--ink);
     transform: rotate(-2deg);
   }
@@ -192,7 +191,7 @@ const instagram = 'https://www.instagram.com/davidkrae/';
   .mm-turquoise { background: var(--turquoise); }
   .mm-pink { background: var(--pink); }
   .mm-yellow { background: var(--yellow); }
-  .mm-insta { background: var(--ink); color: var(--yellow); gap: 8px; }
+  .mm-insta { background: var(--pink); gap: 8px; }
   .mm-insta .ig { display: block; }
   @media (max-width: 760px) {
     .links { display: none; }
