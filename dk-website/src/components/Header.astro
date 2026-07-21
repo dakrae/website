@@ -1,66 +1,202 @@
 ---
+const links = [
+  { href: '#collaborations', label: 'Collaborations', color: 'lavender' },
+  { href: '#videos', label: 'Videos', color: 'yellow' },
+  { href: '#live', label: 'Live', color: 'turquoise' },
+  { href: '#lessons', label: 'Lessons', color: 'pink' },
+  { href: '#contact', label: 'Contact', color: 'lavender' },
+];
+const instagram = 'https://www.instagram.com/davidkrae/';
 ---
 <nav class="nav">
-  <a href="#top" class="wordmark">DAVID KRÄHENBÜHL ●</a>
-  <div class="links">
-    <a href="#collaborations">Collaborations</a>
-    <a href="#live">Live</a>
-    <a href="#lessons">Lessons</a>
-    <a href="#contact">Contact</a>
-    <a
-      class="insta"
-      href="https://www.instagram.com/davidkrae/"
-      target="_blank"
-      rel="noopener"
-    >Instagram ↗</a>
+  <div class="nav-bar">
+    <a href="#top" class="wordmark">DAVID KRÄHENBÜHL <span class="dot">●</span></a>
+    <div class="links">
+      {links.map((l) => (
+        <a href={l.href} class={`pill p-${l.color}`}>{l.label}</a>
+      ))}
+      <div class="socials">
+        <a href={instagram} target="_blank" rel="noopener" class="insta" aria-label="Instagram">
+          <svg class="ig" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="16.7" cy="7.3" r="1.2" fill="currentColor" stroke="none" />
+          </svg>
+        </a>
+      </div>
+    </div>
+    <button class="menu-btn" aria-label="Menu" aria-expanded="false">Menu ☰</button>
+  </div>
+  <div class="mobile-menu">
+    {links.map((l) => (
+      <a href={l.href} class={`mm-${l.color}`}>{l.label}</a>
+    ))}
+    <a href={instagram} target="_blank" rel="noopener" class="mm-insta">
+      <svg class="ig" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="16.7" cy="7.3" r="1.2" fill="currentColor" stroke="none" />
+      </svg>
+      Instagram
+    </a>
   </div>
 </nav>
 
+<script>
+  const btn = document.querySelector('.menu-btn') as HTMLButtonElement;
+  const menu = document.querySelector('.mobile-menu') as HTMLElement;
+
+  function setOpen(open: boolean) {
+    menu.classList.toggle('open', open);
+    btn.textContent = open ? 'Close ✕' : 'Menu ☰';
+    btn.setAttribute('aria-expanded', String(open));
+  }
+
+  btn.addEventListener('click', () => setOpen(!menu.classList.contains('open')));
+  menu.querySelectorAll('a').forEach((a) =>
+    a.addEventListener('click', () => setOpen(false))
+  );
+  window.matchMedia('(min-width: 901px)').addEventListener('change', (e) => {
+    if (e.matches) setOpen(false);
+  });
+</script>
+
 <style>
   .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--page-bg);
+    border-bottom: 3px solid var(--ink);
+  }
+  .nav-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    padding: 20px 32px;
-    border-bottom: 3px solid var(--ink);
-    position: sticky;
-    top: 0;
-    background: var(--page-bg);
-    z-index: 50;
+    padding: 14px 32px;
   }
   .nav a { text-decoration: none; }
   .wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     font-size: 15px;
-    font-weight: bold;
+    font-weight: 700;
     letter-spacing: 0.02em;
     white-space: nowrap;
+    border: 2px solid var(--ink);
+    background: var(--surface);
+    border-radius: 999px;
+    padding: 8px 18px;
+    box-shadow: 4px 4px 0 var(--shadow);
+    transition: background 0.15s, transform 0.15s;
   }
-  .wordmark:hover { color: var(--ink); }
+  .wordmark:hover {
+    background: var(--yellow);
+    transform: rotate(-2deg);
+    color: inherit;
+  }
+  .wordmark .dot { color: var(--violet); }
   .links {
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 12px;
     font-size: 13px;
     text-transform: uppercase;
   }
-  .links a:hover {
-    color: var(--violet);
-    text-decoration: underline wavy;
+  .pill {
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    padding: 6px 16px;
+    background: var(--surface);
+    box-shadow: 2px 2px 0 var(--shadow);
+    transition: background 0.15s, box-shadow 0.15s, transform 0.15s;
+  }
+  .pill:hover {
+    box-shadow: 3px 3px 0 var(--shadow);
+    color: inherit;
+  }
+  .pill.p-lavender:hover { background: var(--lavender); transform: rotate(-2deg); }
+  .pill.p-turquoise:hover { background: var(--turquoise); transform: rotate(2deg); }
+  .pill.p-pink:hover { background: var(--pink); transform: rotate(-2deg); }
+  .pill.p-yellow:hover { background: var(--yellow); transform: rotate(2deg); }
+  .socials {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 4px;
   }
   .insta {
-    background: var(--ink);
-    color: var(--yellow);
-    padding: 2px 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--ink);
     border-radius: 999px;
-  }
-  .links a.insta:hover {
-    background: var(--pink);
+    padding: 7px;
+    background: var(--surface);
     color: var(--ink);
-    text-decoration: none;
+    box-shadow: 2px 2px 0 var(--shadow);
+    transition: background 0.15s, box-shadow 0.15s, transform 0.15s;
   }
-  @media (max-width: 720px) {
-    .nav { flex-wrap: wrap; padding: 14px 20px; }
-    .links { flex-wrap: wrap; gap: 10px 16px; }
+  .insta .ig { display: block; }
+  .insta:hover {
+    background: var(--yellow);
+    box-shadow: 3px 3px 0 var(--shadow);
+    transform: rotate(-2deg);
+  }
+  .menu-btn {
+    display: none;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    padding: 8px 16px;
+    background: var(--surface);
+    color: var(--ink);
+    cursor: pointer;
+    box-shadow: 3px 3px 0 var(--shadow);
+    min-height: 44px;
+  }
+  .menu-btn:active {
+    background: var(--yellow);
+    box-shadow: 1px 1px 0 var(--shadow);
+    transform: translate(2px, 2px);
+  }
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    padding: 8px 20px 20px;
+    border-top: 2px dashed var(--ink);
+    font-size: 15px;
+    text-transform: uppercase;
+    background: var(--page-bg);
+  }
+  .mobile-menu a {
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    padding: 12px 20px;
+    text-align: center;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mobile-menu a:first-child { margin-top: 12px; }
+  .mobile-menu a:active { box-shadow: 3px 3px 0 var(--shadow); }
+  .mm-lavender { background: var(--lavender); }
+  .mm-turquoise { background: var(--turquoise); }
+  .mm-pink { background: var(--pink); }
+  .mm-yellow { background: var(--yellow); }
+  .mm-insta { background: var(--yellow); gap: 8px; }
+  .mm-insta .ig { display: block; }
+  @media (max-width: 900px) {
+    .links { display: none; }
+    .menu-btn { display: inline-block; }
+    .mobile-menu.open { display: flex; }
   }
 </style>

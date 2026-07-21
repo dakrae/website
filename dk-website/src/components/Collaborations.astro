@@ -4,6 +4,7 @@ const entries = (await getCollection('collaborations')).sort(
   (a, b) => a.data.order - b.data.order
 );
 const chips = ['var(--lavender)', 'var(--turquoise)', 'var(--pink)'];
+const tints = ['#E4DCF8', '#B4F4E9', '#FCC4DE'];
 ---
 <section id="collaborations">
   <div class="wrap">
@@ -15,7 +16,7 @@ const chips = ['var(--lavender)', 'var(--turquoise)', 'var(--pink)'];
           ? { href: entry.data.url, target: '_blank', rel: 'noopener' }
           : {};
         return (
-          <Tag class="card" style={`--chip:${chips[i % chips.length]}`} {...attrs}>
+          <Tag class="card" style={`--chip:${chips[i % chips.length]};--tint:${tints[i % tints.length]}`} {...attrs}>
             <span class="photo">
               {entry.data.image ? (
                 <img src={entry.data.image} alt={entry.data.name} loading="lazy" />
@@ -45,7 +46,7 @@ const chips = ['var(--lavender)', 'var(--turquoise)', 'var(--pink)'];
     text-decoration: none;
     border: 3px solid var(--ink);
     border-radius: 20px;
-    background: var(--card-bg);
+    background: var(--surface);
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -62,7 +63,7 @@ const chips = ['var(--lavender)', 'var(--turquoise)', 'var(--pink)'];
     aspect-ratio: 4 / 3;
     border-bottom: 3px solid var(--ink);
     position: relative;
-    background: color-mix(in srgb, var(--chip) 45%, var(--card-bg));
+    background: var(--tint);
   }
   .photo img {
     width: 100%;
@@ -93,5 +94,9 @@ const chips = ['var(--lavender)', 'var(--turquoise)', 'var(--pink)'];
     color: var(--chip);
     -webkit-text-stroke: 1px var(--ink);
     font-size: 24px;
+  }
+  @media (max-width: 760px) {
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .row { padding: 12px 14px; font-size: 15px; }
   }
 </style>

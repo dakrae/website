@@ -24,7 +24,7 @@
         >Book a trial lesson on Instrumentor ↗</a>
       </div>
       <div class="photo">
-        <img src="/images/lessons.jpg" alt="David Krähenbühl teaching drums" loading="lazy" />
+        <img src="/images/david-kraehenbuehl_fourfive_with_tagline_92ba.jpg" alt="David Krähenbühl teaching drums" loading="lazy" />
       </div>
     </div>
   </div>
@@ -35,10 +35,11 @@
   .card {
     border: 3px solid var(--ink);
     border-radius: 20px;
-    background: var(--card-bg);
+    background: var(--surface);
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     overflow: hidden;
+    box-shadow: 8px 8px 0 var(--shadow);
   }
   .copy {
     padding: clamp(28px, 4vw, 48px);
@@ -58,7 +59,7 @@
     gap: 10px;
   }
   .chip {
-    border: 2px solid var(--ink);
+    border: 2px dashed var(--ink);
     border-radius: 999px;
     padding: 4px 14px;
     font-size: 13px;
@@ -83,18 +84,23 @@
   }
   .photo {
     border-left: 3px solid var(--ink);
-    position: relative;
     min-height: 320px;
-    background: color-mix(in srgb, var(--lavender) 45%, var(--card-bg));
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(20px, 3vw, 40px);
   }
   .photo img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 100%;
+    max-height: 400px;
+    width: auto;
+    height: auto;
+    border: 3px solid var(--ink);
+    border-radius: 12px;
+    box-shadow: 6px 6px 0 var(--shadow);
   }
-  @media (max-width: 780px) {
+  @media (max-width: 760px) {
     .card { grid-template-columns: 1fr; }
     .photo {
       border-left: none;

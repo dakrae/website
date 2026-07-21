@@ -1,7 +1,19 @@
 ---
 import { getCollection } from 'astro:content';
-// Note: sorting by date makes sense once real dates (DD.MM.YY) are entered.
-const shows = await getCollection('shows');
+
+// Parse "DD.MM.YYYY" (or "DD.MM.YY") into a sortable timestamp;
+// unparseable dates sort to the end.
+function dateKey(date: string): number {
+  const m = date.trim().match(/^(\d{1,2})\.(\d{1,2})\.(\d{2,4})$/);
+  if (!m) return Number.MAX_SAFE_INTEGER;
+  const [, d, mo, y] = m;
+  const year = y.length === 2 ? 2000 + Number(y) : Number(y);
+  return new Date(year, Number(mo) - 1, Number(d)).getTime();
+}
+
+const shows = (await getCollection('shows')).sort(
+  (a, b) => dateKey(a.data.date) - dateKey(b.data.date)
+);
 ---
 <section id="live">
   <div class="wrap">
@@ -33,13 +45,14 @@ const shows = await getCollection('shows');
     border: 3px solid var(--ink);
     border-radius: 20px;
     overflow: hidden;
-    background: var(--card-bg);
+    background: var(--surface);
+    box-shadow: 8px 8px 0 var(--shadow);
   }
   .row {
     display: grid;
     grid-template-columns: 110px 1fr 1fr 120px;
     gap: 16px;
-    align-items: center;
+    align-items: baseline;
     padding: 18px 24px;
     border-bottom: 2px dashed var(--ink);
     font-size: 15px;
@@ -59,18 +72,14 @@ const shows = await getCollection('shows');
     text-align: right;
     font-size: 13px;
   }
-  @media (max-width: 640px) {
+  @media (max-width: 760px) {
     .row {
-      grid-template-columns: 1fr auto;
-      grid-template-areas:
-        "date city"
-        "band band"
-        "venue venue";
-      row-gap: 4px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px 12px;
+      padding: 14px 16px;
+      font-size: 13px;
     }
-    .date { grid-area: date; }
-    .city { grid-area: city; }
-    .band { grid-area: band; }
-    .venue { grid-area: venue; }
+    .city { margin-left: auto; }
   }
 </style>

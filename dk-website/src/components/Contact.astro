@@ -8,7 +8,9 @@ const email = "hallo@davidkraehenbuehl.ch";
     <p class="lead">
       Open to live shows, studio sessions, and new projects.
     </p>
-    <a class="mail" href={`mailto:${email}`}>{email} ↗</a>
+    <a class="mail" href={`mailto:${email}`}>
+      <span class="mail-full">{email}</span><span class="mail-short">E-Mail</span> ↗
+    </a>
     <div class="wobble-star" aria-hidden="true">✳</div>
   </div>
 </section>
@@ -16,11 +18,11 @@ const email = "hallo@davidkraehenbuehl.ch";
 <style>
   section { padding: 120px 32px; }
   .card {
-    background: var(--turquoise);
+    background: var(--lavender);
     border: 3px solid var(--ink);
     border-radius: 28px;
     padding: clamp(40px, 6vw, 80px);
-    box-shadow: 10px 10px 0 var(--ink);
+    box-shadow: 10px 10px 0 var(--shadow);
     position: relative;
   }
   h2 {
@@ -35,6 +37,7 @@ const email = "hallo@davidkraehenbuehl.ch";
   }
   .mail {
     display: inline-block;
+    max-width: 100%;
     text-decoration: none;
     background: var(--ink);
     color: var(--yellow);
@@ -48,6 +51,12 @@ const email = "hallo@davidkraehenbuehl.ch";
     background: var(--pink);
     color: var(--ink);
     transform: rotate(-1.5deg);
+  }
+  .mail-short { display: none; }
+  @media (max-width: 430px) {
+    .mail { padding: 16px 26px; }
+    .mail-full { display: none; }
+    .mail-short { display: inline; }
   }
   .wobble-star {
     position: absolute;
