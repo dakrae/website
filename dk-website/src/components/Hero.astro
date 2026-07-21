@@ -3,7 +3,9 @@
 <header id="top" class="hero">
   <div class="wrap hero-inner">
     <div class="head-block">
-      <h1>David<br />Krähen—<br />bühl<span class="dot">.</span></h1>
+      <h1>
+        <span class="nm nm-wide">David<br />Krähenbühl<span class="dot">.</span></span><span class="nm nm-narrow">David<br />Krähen—<br />bühl<span class="dot">.</span></span>
+      </h1>
       <p class="bio">
         David Krähenbühl is a Zurich-based drummer. He works as a sideman and
         session musician in various pop and indie projects, and is co-leader
@@ -38,6 +40,7 @@
     letter-spacing: -0.04em;
     text-transform: uppercase;
   }
+  .nm-narrow { display: none; }
   .dot { color: var(--violet); }
   .bio {
     max-width: 520px;
@@ -71,5 +74,7 @@
   @media (max-width: 760px) {
     .hero-inner { grid-template-columns: 1fr; }
     .media-block { max-width: 480px; }
+    .nm-wide { display: none; }
+    .nm-narrow { display: inline; }
   }
 </style>
