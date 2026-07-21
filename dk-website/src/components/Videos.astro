@@ -1,0 +1,119 @@
+---
+const videos = [
+  { id: 'oLf0dvIrwU4' },
+  { id: 'ejy8FAozqG4' },
+  { id: 'Os3F1BK7_Lc' },
+];
+const chips = ['var(--lavender)', 'var(--turquoise)', 'var(--pink)'];
+const tints = ['#E4DCF8', '#B4F4E9', '#FCC4DE'];
+---
+<section id="videos">
+  <div class="wrap">
+    <h2>Watch.</h2>
+    <div class="grid">
+      {videos.map((v, i) => (
+        <a
+          class="card"
+          style={`--chip:${chips[i % chips.length]};--tint:${tints[i % tints.length]}`}
+          href={`https://youtu.be/${v.id}`}
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="thumb">
+            <img
+              src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`}
+              alt="YouTube video thumbnail"
+              loading="lazy"
+            />
+            <span class="play" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+                <path d="M8 5v14l11-7z" fill="currentColor" />
+              </svg>
+            </span>
+          </span>
+          <span class="row">
+            Watch on YouTube <span class="arrow" aria-hidden="true">↗</span>
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  section { padding: 110px 32px 0; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    text-decoration: none;
+    border: 3px solid var(--ink);
+    border-radius: 20px;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    color: inherit;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 8px 8px 0 var(--chip);
+    color: inherit;
+  }
+  .thumb {
+    display: block;
+    aspect-ratio: 16 / 9;
+    border-bottom: 3px solid var(--ink);
+    position: relative;
+    background: var(--tint);
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+  }
+  .play {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--page-bg);
+    color: var(--ink);
+    border: 3px solid var(--ink);
+    border-radius: 999px;
+    box-shadow: 3px 3px 0 var(--shadow);
+    padding-left: 3px;
+    transition: transform 0.2s, background 0.2s, color 0.2s;
+  }
+  .card:hover .play {
+    background: var(--pink);
+    transform: scale(1.06);
+  }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 22px;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .arrow {
+    color: var(--chip);
+    -webkit-text-stroke: 1px var(--ink);
+    font-size: 22px;
+  }
+  @media (max-width: 760px) {
+    .row { padding: 12px 14px; font-size: 13px; }
+  }
+</style>

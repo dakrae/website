@@ -1,6 +1,7 @@
 ---
 const links = [
   { href: '#collaborations', label: 'Collaborations', color: 'lavender' },
+  { href: '#videos', label: 'Videos', color: 'violet' },
   { href: '#live', label: 'Live', color: 'turquoise' },
   { href: '#lessons', label: 'Lessons', color: 'pink' },
   { href: '#contact', label: 'Contact', color: 'yellow' },
@@ -55,7 +56,7 @@ const instagram = 'https://www.instagram.com/davidkrae/';
   menu.querySelectorAll('a').forEach((a) =>
     a.addEventListener('click', () => setOpen(false))
   );
-  window.matchMedia('(min-width: 761px)').addEventListener('change', (e) => {
+  window.matchMedia('(min-width: 901px)').addEventListener('change', (e) => {
     if (e.matches) setOpen(false);
   });
 </script>
@@ -117,6 +118,7 @@ const instagram = 'https://www.instagram.com/davidkrae/';
     color: inherit;
   }
   .pill.p-lavender:hover { background: var(--lavender); transform: rotate(-2deg); }
+  .pill.p-violet:hover { background: var(--violet); color: #fff; transform: rotate(2deg); }
   .pill.p-turquoise:hover { background: var(--turquoise); transform: rotate(2deg); }
   .pill.p-pink:hover { background: var(--pink); transform: rotate(-2deg); }
   .pill.p-yellow:hover { background: var(--yellow); transform: rotate(2deg); }
@@ -188,12 +190,13 @@ const instagram = 'https://www.instagram.com/davidkrae/';
   .mobile-menu a:first-child { margin-top: 12px; }
   .mobile-menu a:active { box-shadow: 3px 3px 0 var(--shadow); }
   .mm-lavender { background: var(--lavender); }
+  .mm-violet { background: var(--violet); color: #fff; }
   .mm-turquoise { background: var(--turquoise); }
   .mm-pink { background: var(--pink); }
   .mm-yellow { background: var(--yellow); }
   .mm-insta { background: var(--pink); gap: 8px; }
   .mm-insta .ig { display: block; }
-  @media (max-width: 760px) {
+  @media (max-width: 900px) {
     .links { display: none; }
     .menu-btn { display: inline-block; }
     .mobile-menu.open { display: flex; }
