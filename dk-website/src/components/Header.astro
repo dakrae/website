@@ -1,10 +1,10 @@
 ---
 const links = [
-  { href: '#collaborations', label: 'Collaborations', color: 'lavender' },
-  { href: '#videos', label: 'Videos', color: 'yellow' },
-  { href: '#live', label: 'Live', color: 'turquoise' },
-  { href: '#lessons', label: 'Lessons', color: 'pink' },
-  { href: '#contact', label: 'Contact', color: 'lavender' },
+  { href: '#collaborations', label: 'Collaborations', color: 'lavender', dir: 'l' },
+  { href: '#videos', label: 'Videos', color: 'yellow', dir: 'r' },
+  { href: '#live', label: 'Live', color: 'turquoise', dir: 'l' },
+  { href: '#lessons', label: 'Lessons', color: 'pink', dir: 'r' },
+  { href: '#contact', label: 'Contact', color: 'lavender', dir: 'l' },
 ];
 const instagram = 'https://www.instagram.com/davidkrae/';
 ---
@@ -13,7 +13,7 @@ const instagram = 'https://www.instagram.com/davidkrae/';
     <a href="#top" class="wordmark">DAVID KRÄHENBÜHL <span class="dot">●</span></a>
     <div class="links">
       {links.map((l) => (
-        <a href={l.href} class={`pill p-${l.color}`}>{l.label}</a>
+        <a href={l.href} class={`pill p-${l.color} t-${l.dir}`}>{l.label}</a>
       ))}
       <div class="socials">
         <a href={instagram} target="_blank" rel="noopener" class="insta" aria-label="Instagram">
@@ -117,10 +117,12 @@ const instagram = 'https://www.instagram.com/davidkrae/';
     box-shadow: 3px 3px 0 var(--shadow);
     color: inherit;
   }
-  .pill.p-lavender:hover { background: var(--lavender); transform: rotate(-2deg); }
-  .pill.p-turquoise:hover { background: var(--turquoise); transform: rotate(2deg); }
-  .pill.p-pink:hover { background: var(--pink); transform: rotate(-2deg); }
-  .pill.p-yellow:hover { background: var(--yellow); transform: rotate(2deg); }
+  .pill.p-lavender:hover { background: var(--lavender); }
+  .pill.p-turquoise:hover { background: var(--turquoise); }
+  .pill.p-pink:hover { background: var(--pink); }
+  .pill.p-yellow:hover { background: var(--yellow); }
+  .pill.t-l:hover { transform: rotate(-2deg); }
+  .pill.t-r:hover { transform: rotate(2deg); }
   .socials {
     display: flex;
     align-items: center;
