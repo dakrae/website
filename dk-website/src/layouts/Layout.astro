@@ -1,30 +1,78 @@
 ---
 import '../styles/global.css';
+import SeoSchema from '../components/SeoSchema.astro';
+import { site, abs } from '../data/site';
 
 interface Props {
   title: string;
   description: string;
 }
 const { title, description } = Astro.props;
+
+const origin = Astro.site ?? new URL(Astro.url.origin);
+const canonical = abs(Astro.url.pathname, origin);
+const ogImage = abs(site.ogImage, origin);
 ---
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta name="author" content={site.name} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Local search signals: a Zurich-based musician should surface for
+         "Schlagzeuger Zürich" as much as for "drummer Zurich". -->
+    <meta name="geo.region" content="CH-ZH" />
+    <meta name="geo.placename" content={site.localityDe} />
+    <meta name="geo.position" content={`${site.geo.lat};${site.geo.lon}`} />
+    <meta name="ICBM" content={`${site.geo.lat}, ${site.geo.lon}`} />
+
+    <!-- Open Graph (link previews on Facebook, LinkedIn, WhatsApp, Signal…) -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/images/hero.jpg" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={site.ogImageAlt} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="de_CH" />
+    <meta property="profile:first_name" content="David" />
+    <meta property="profile:last_name" content="Krähenbühl" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- X / Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={site.ogImageAlt} />
+
+    <meta name="theme-color" content="#FFFFFF" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/fonts/space-mono-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
+    <link
+      rel="preload"
+      href="/fonts/space-mono-700.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <SeoSchema />
   </head>
   <body>
     <slot />

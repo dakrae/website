@@ -1,3 +1,20 @@
+/* Self-hosted so text renders without waiting on a third-party stylesheet
+   (faster first paint, and no request to Google from visitors' browsers). */
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/space-mono-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/space-mono-700.woff2') format('woff2');
+}
+
 :root {
   /* Color — neo-brutalist: ink lines, hard offset shadows, white page,
      light-lavender surfaces, saturated accents. */

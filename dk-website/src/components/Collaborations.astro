@@ -19,7 +19,12 @@ const tints = ['#E4DCF8', '#B4F4E9', '#FCC4DE'];
           <Tag class="card" style={`--chip:${chips[i % chips.length]};--tint:${tints[i % tints.length]}`} {...attrs}>
             <span class="photo">
               {entry.data.image ? (
-                <img src={entry.data.image} alt={entry.data.name} loading="lazy" />
+                <img
+                  src={entry.data.image}
+                  alt={`${entry.data.name} — one of the acts David Krähenbühl plays drums with`}
+                  loading="lazy"
+                  decoding="async"
+                />
               ) : (
                 <span class="photo-ph" aria-hidden="true">{entry.data.name}</span>
               )}
