@@ -4,10 +4,13 @@ import SeoSchema from '../components/SeoSchema.astro';
 import { site, abs } from '../data/site';
 
 interface Props {
+  /** Shown in the browser tab. */
   title: string;
+  /** Used for link previews; falls back to `title`. */
+  socialTitle?: string;
   description: string;
 }
-const { title, description } = Astro.props;
+const { title, description, socialTitle = title } = Astro.props;
 
 const origin = Astro.site ?? new URL(Astro.url.origin);
 const canonical = abs(Astro.url.pathname, origin);
@@ -36,7 +39,7 @@ const ogImage = abs(site.ogImage, origin);
     <!-- Open Graph (link previews on Facebook, LinkedIn, WhatsApp, Signal…) -->
     <meta property="og:type" content="profile" />
     <meta property="og:site_name" content={site.name} />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={socialTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
@@ -48,7 +51,7 @@ const ogImage = abs(site.ogImage, origin);
 
     <!-- X / Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:title" content={socialTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={site.ogImageAlt} />
