@@ -127,7 +127,8 @@ const past = all
   }
   .row {
     display: grid;
-    grid-template-columns: 110px 1fr 1fr 120px;
+    /* Last column fits the longest city plus its trailing dot on one line. */
+    grid-template-columns: 110px 1fr 1.2fr 160px;
     gap: 16px;
     align-items: baseline;
     padding: 18px 24px;
