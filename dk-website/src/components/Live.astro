@@ -1,26 +1,44 @@
 ---
 import { getCollection } from 'astro:content';
 
-// Parse "DD.MM.YYYY" (or "DD.MM.YY") into a sortable timestamp;
-// unparseable dates sort to the end.
+/** Parse "DD.MM.YYYY" (or "DD.MM.YY") into a sortable timestamp. */
 function dateKey(date: string): number {
   const m = date.trim().match(/^(\d{1,2})\.(\d{1,2})\.(\d{2,4})$/);
-  if (!m) return Number.MAX_SAFE_INTEGER;
+  if (!m) return Number.MAX_SAFE_INTEGER; // unparseable: treat as far future
   const [, d, mo, y] = m;
   const year = y.length === 2 ? 2000 + Number(y) : Number(y);
   return new Date(year, Number(mo) - 1, Number(d)).getTime();
 }
 
-const shows = (await getCollection('shows')).sort(
-  (a, b) => dateKey(a.data.date) - dateKey(b.data.date)
-);
+/** ISO date so the browser can re-check "is this past?" at page load. */
+function isoDate(date: string): string {
+  const m = date.trim().match(/^(\d{1,2})\.(\d{1,2})\.(\d{2,4})$/);
+  if (!m) return '';
+  const [, d, mo, y] = m;
+  const year = y.length === 2 ? `20${y}` : y;
+  return `${year}-${mo.padStart(2, '0')}-${d.padStart(2, '0')}`;
+}
+
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+const todayKey = today.getTime();
+
+const all = await getCollection('shows');
+// Upcoming: soonest first. Past: most recent first.
+const upcoming = all
+  .filter((s) => dateKey(s.data.date) >= todayKey)
+  .sort((a, b) => dateKey(a.data.date) - dateKey(b.data.date));
+const past = all
+  .filter((s) => dateKey(s.data.date) < todayKey)
+  .sort((a, b) => dateKey(b.data.date) - dateKey(a.data.date));
 ---
 <section id="live">
   <div class="wrap">
     <h2>Upcoming shows.</h2>
-    <div class="table-card">
-      {shows.map((show) => (
-        <div class="row">
+
+    <div class="table-card" data-upcoming>
+      {upcoming.map((show) => (
+        <div class="row" data-date={isoDate(show.data.date)}>
           <span class="date">{show.data.date}</span>
           <span class="band">{show.data.act}</span>
           <span class="venue">
@@ -35,9 +53,68 @@ const shows = (await getCollection('shows')).sort(
           <span class="city">{show.data.city} ●</span>
         </div>
       ))}
+      <p class="empty" data-empty hidden={upcoming.length > 0}>
+        No dates announced right now — check back soon.
+      </p>
     </div>
+
+    <details class="past" data-past-wrap hidden={past.length === 0}>
+      <summary>
+        <span class="past-label">Past shows</span>
+        <span class="count" data-past-count>{past.length}</span>
+        <span class="chev" aria-hidden="true">▾</span>
+      </summary>
+      <div class="table-card past-card" data-past>
+        {past.map((show) => (
+          <div class="row" data-date={isoDate(show.data.date)}>
+            <span class="date">{show.data.date}</span>
+            <span class="band">{show.data.act}</span>
+            <span class="venue">
+              {show.data.url ? (
+                <a href={show.data.url} target="_blank" rel="noopener">
+                  {show.data.venue}
+                </a>
+              ) : (
+                show.data.venue
+              )}
+            </span>
+            <span class="city">{show.data.city} ●</span>
+          </div>
+        ))}
+      </div>
+    </details>
   </div>
 </section>
+
+<script>
+  // The page is statically built, so the upcoming/past split is frozen at
+  // build time. Re-check it in the visitor's browser so a show moves to
+  // "past" on the day it happens, even without a redeploy.
+  const upcomingCard = document.querySelector<HTMLElement>('[data-upcoming]');
+  const pastCard = document.querySelector<HTMLElement>('[data-past]');
+  const pastWrap = document.querySelector<HTMLElement>('[data-past-wrap]');
+  const pastCount = document.querySelector<HTMLElement>('[data-past-count]');
+  const empty = document.querySelector<HTMLElement>('[data-empty]');
+
+  if (upcomingCard && pastCard && pastWrap && pastCount && empty) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Ascending order in the DOM, so prepending keeps "most recent first".
+    upcomingCard.querySelectorAll<HTMLElement>('.row[data-date]').forEach((row) => {
+      const iso = row.dataset.date;
+      if (!iso) return;
+      if (new Date(`${iso}T00:00:00`) < today) {
+        pastCard.prepend(row);
+      }
+    });
+
+    const pastRows = pastCard.querySelectorAll('.row').length;
+    pastCount.textContent = String(pastRows);
+    pastWrap.hidden = pastRows === 0;
+    empty.hidden = upcomingCard.querySelectorAll('.row').length > 0;
+  }
+</script>
 
 <style>
   section { padding: 110px 32px 0; }
@@ -72,6 +149,69 @@ const shows = (await getCollection('shows')).sort(
     text-align: right;
     font-size: 13px;
   }
+  .empty {
+    margin: 0;
+    padding: 18px 24px;
+    font-size: 15px;
+    color: color-mix(in srgb, var(--ink) 65%, transparent);
+  }
+
+  /* ---- Past shows: collapsed by default, quieter once open ---- */
+  .past {
+    margin-top: 20px;
+  }
+  .past summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    list-style: none;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    padding: 8px 18px;
+    background: var(--surface);
+    box-shadow: 2px 2px 0 var(--shadow);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: background 0.15s, box-shadow 0.15s, transform 0.15s;
+  }
+  .past summary::-webkit-details-marker { display: none; }
+  .past summary:hover {
+    background: var(--lavender);
+    box-shadow: 3px 3px 0 var(--shadow);
+    transform: rotate(-1deg);
+  }
+  .past summary:focus-visible {
+    outline: 3px solid var(--violet);
+    outline-offset: 3px;
+  }
+  .count {
+    display: inline-grid;
+    place-items: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--yellow);
+    font-size: 12px;
+  }
+  .chev { transition: transform 0.2s ease; }
+  .past[open] .chev { transform: rotate(180deg); }
+
+  .past-card {
+    margin-top: 16px;
+    /* Past dates are archive material: same structure, less visual weight. */
+    background: color-mix(in srgb, var(--surface) 55%, var(--page-bg));
+    box-shadow: 4px 4px 0 color-mix(in srgb, var(--shadow) 45%, transparent);
+    color: color-mix(in srgb, var(--ink) 70%, transparent);
+  }
+  .past-card .row:hover {
+    background: color-mix(in srgb, var(--violet) 75%, transparent);
+    color: var(--yellow);
+  }
+
   @media (max-width: 760px) {
     .row {
       display: flex;
@@ -81,5 +221,6 @@ const shows = (await getCollection('shows')).sort(
       font-size: 13px;
     }
     .city { margin-left: auto; }
+    .empty { padding: 14px 16px; font-size: 13px; }
   }
 </style>
