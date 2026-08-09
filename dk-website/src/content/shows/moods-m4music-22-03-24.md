@@ -1,6 +1,6 @@
 ---
 date: 22.03.24
-act: Ena Vera
+act: Éna Vera
 venue: Moods / m4music
 city: Zürich
 ---

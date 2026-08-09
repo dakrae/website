@@ -1,6 +1,6 @@
 ---
 date: 21.03.24
-act: Ena Vera
+act: Éna Vera
 venue: Cafe Kairo
 city: Bern
 ---

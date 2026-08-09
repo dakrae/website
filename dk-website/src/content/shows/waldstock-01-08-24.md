@@ -1,6 +1,6 @@
 ---
 date: 01.08.24
-act: Ena Vera
+act: Éna Vera
 venue: Waldstock
 city: Zug
 ---

@@ -1,6 +1,6 @@
 ---
 date: 11.08.23
-act: Ena Vera
+act: Éna Vera
 venue: Musig i de Altstadt
 city: Aarau
 ---

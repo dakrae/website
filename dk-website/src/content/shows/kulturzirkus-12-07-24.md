@@ -1,6 +1,6 @@
 ---
 date: 12.07.24
-act: Ena Vera
+act: Éna Vera
 venue: Kulturzirkus
 city: Arlesheim
 ---

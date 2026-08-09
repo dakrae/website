@@ -1,6 +1,6 @@
 ---
 date: 04.05.24
-act: Ena Vera
+act: Éna Vera
 venue: Staufferhaus
 city: Unterentfelden
 ---

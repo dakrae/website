@@ -1,6 +1,6 @@
 ---
 date: 02.08.24
-act: Ena Vera
+act: Éna Vera
 venue: Sommerbar
 city: Wohlen
 ---

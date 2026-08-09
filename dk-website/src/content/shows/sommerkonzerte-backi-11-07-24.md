@@ -1,6 +1,6 @@
 ---
 date: 11.07.24
-act: Ena Vera
+act: Éna Vera
 venue: Sommerkonzerte Bäcki
 city: Zürich
 ---

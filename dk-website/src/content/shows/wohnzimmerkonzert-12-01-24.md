@@ -1,6 +1,6 @@
 ---
 date: 12.01.24
-act: Ena Vera
+act: Éna Vera
 venue: Wohnzimmerkonzert
 city: Bern
 ---
