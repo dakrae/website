@@ -10,7 +10,11 @@ export const site = {
   tagline: 'Drummer & Session Musician — Zurich, Switzerland',
   taglineDe: 'Schlagzeuger & Session-Musiker — Zürich, Schweiz',
 
-  title: 'David Krähenbühl — Drummer & Session Musician, Zurich',
+  /** Browser tab / bookmark title — deliberately just the name. */
+  title: 'David Krähenbühl',
+
+  /** Longer, descriptive title for link previews and structured data. */
+  socialTitle: 'David Krähenbühl — Drummer & Session Musician, Zurich',
 
   description:
     'David Krähenbühl is a drummer and session musician based in Zurich, Switzerland. ' +
