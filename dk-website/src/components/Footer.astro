@@ -3,6 +3,7 @@ const year = new Date().getFullYear();
 ---
 <footer>
   <span>© {year} David Krähenbühl</span>
+  <span class="role">Drummer &amp; Session Musician · Zurich, Switzerland</span>
   <a href="https://www.instagram.com/davidkrae/" target="_blank" rel="noopener">Instagram ↗</a>
 </footer>
 
@@ -18,6 +19,9 @@ const year = new Date().getFullYear();
     font-size: 13px;
     background: var(--ink);
     color: var(--lavender-pale);
+  }
+  .role {
+    color: color-mix(in srgb, var(--lavender-pale) 70%, transparent);
   }
   footer a {
     color: var(--yellow);
