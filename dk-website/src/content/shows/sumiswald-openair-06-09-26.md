@@ -1,5 +1,5 @@
 ---
-date: 06.09.26
+date: 06.09.25
 act: James Gruntz
 venue: Sumiswald Openair
 city: Sumiswald
