@@ -1,5 +1,5 @@
 ---
-date: 17.10.2026
+date: 17.10.26
 act: loophole
 venue: Backstein West
 city: Leipzig
