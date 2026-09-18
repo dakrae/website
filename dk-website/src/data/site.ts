@@ -74,6 +74,7 @@ export const site = {
     { name: 'loophole', url: 'https://www.loophole.ch' },
     { name: 'James Gruntz', url: 'https://www.jamesgruntz.com' },
     { name: 'Marlin', url: 'https://marlinmusic.ch' },
+    { name: 'Paula Mia', url: 'https://www.instagram.com/paula.mia/' },
   ],
 } as const;
 
