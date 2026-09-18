@@ -3,8 +3,8 @@ import { getCollection } from 'astro:content';
 const entries = (await getCollection('collaborations')).sort(
   (a, b) => a.data.order - b.data.order
 );
-const chips = ['var(--lavender)', 'var(--turquoise)', 'var(--pink)'];
-const tints = ['#E4DCF8', '#B4F4E9', '#FCC4DE'];
+const chips = ['var(--lavender)', 'var(--turquoise)', 'var(--pink)', 'var(--yellow)'];
+const tints = ['#E4DCF8', '#B4F4E9', '#FCC4DE', '#F7FFA8'];
 ---
 <section id="collaborations">
   <div class="wrap">
