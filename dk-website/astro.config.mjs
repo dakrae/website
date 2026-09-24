@@ -7,5 +7,8 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://davidkraehenbuehl.ch',
   output: 'static',
-  integrations: [sitemap()]
+  integrations: [
+    // Unlisted pages (e.g. the app privacy policy) stay out of the sitemap.
+    sitemap({ filter: (page) => !page.includes('/hit-trainer/') })
+  ]
 });

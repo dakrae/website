@@ -11,3 +11,7 @@
 
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
+
+# Unlisted pages: reachable by direct link only, never indexed.
+/hit-trainer/*
+  X-Robots-Tag: noindex, nofollow

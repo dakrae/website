@@ -9,15 +9,18 @@ interface Props {
   /** Used for link previews; falls back to `title`. */
   socialTitle?: string;
   description: string;
+  /** Unlisted pages: keep them out of search results and link previews. */
+  noindex?: boolean;
+  lang?: string;
 }
-const { title, description, socialTitle = title } = Astro.props;
+const { title, description, socialTitle = title, noindex = false, lang = 'en' } = Astro.props;
 
 const origin = Astro.site ?? new URL(Astro.url.origin);
 const canonical = abs(Astro.url.pathname, origin);
 const ogImage = abs(site.ogImage, origin);
 ---
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,7 +30,9 @@ const ogImage = abs(site.ogImage, origin);
     <link rel="canonical" href={canonical} />
 
     <meta name="author" content={site.name} />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    {noindex
+      ? <meta name="robots" content="noindex, nofollow" />
+      : <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />}
 
     <!-- Local search signals: a Zurich-based musician should surface for
          "Schlagzeuger Zürich" as much as for "drummer Zurich". -->
@@ -75,7 +80,7 @@ const ogImage = abs(site.ogImage, origin);
       crossorigin
     />
 
-    <SeoSchema />
+    {!noindex && <SeoSchema />}
   </head>
   <body>
     <slot />
