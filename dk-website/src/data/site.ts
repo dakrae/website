@@ -76,6 +76,18 @@ export const site = {
     { name: 'Marlin', url: 'https://marlinmusic.ch' },
     { name: 'Paula Mia', url: 'https://www.instagram.com/paula.mia/' },
   ],
+
+  /** Apps he publishes — shown in the Apps section, fed into structured data. */
+  apps: [
+    {
+      name: 'Hit Trainer',
+      subtitle: 'The complete metronome app',
+      // Country-neutral link: the App Store redirects to the visitor's storefront.
+      url: 'https://apps.apple.com/app/id6817468972',
+      price: '5.00',
+      priceCurrency: 'CHF',
+    },
+  ],
 } as const;
 
 /** Absolute URL helper — structured data and OG tags require full URLs. */

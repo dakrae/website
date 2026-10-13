@@ -103,6 +103,22 @@ const person = {
   },
 };
 
+const apps = site.apps.map((app) => ({
+  '@type': 'MobileApplication',
+  name: app.name,
+  description: app.subtitle,
+  operatingSystem: 'iOS',
+  applicationCategory: 'MusicApplication',
+  url: app.url,
+  author: { '@id': personId },
+  offers: {
+    '@type': 'Offer',
+    price: app.price,
+    priceCurrency: app.priceCurrency,
+    url: app.url,
+  },
+}));
+
 const website = {
   '@type': 'WebSite',
   '@id': `${pageUrl}#website`,
@@ -128,7 +144,7 @@ const webpage = {
 
 const graph = {
   '@context': 'https://schema.org',
-  '@graph': [person, website, webpage, ...events],
+  '@graph': [person, website, webpage, ...apps, ...events],
 };
 ---
 <script type="application/ld+json" set:html={JSON.stringify(graph)} is:inline />
