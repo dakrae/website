@@ -1,0 +1,200 @@
+---
+import { site } from '../data/site';
+
+const hitTrainer = site.apps[0];
+---
+<section id="apps">
+  <div class="wrap">
+    <h2>Apps for musicians.</h2>
+    <div class="card">
+      <div class="copy">
+        <div class="app-head">
+          <img
+            class="icon"
+            src="/images/hit-trainer-icon.webp"
+            alt=""
+            width="240"
+            height="240"
+            loading="lazy"
+            decoding="async"
+          />
+          <div>
+            <h3>{hitTrainer.name}</h3>
+            <p class="sub">{hitTrainer.subtitle}</p>
+          </div>
+        </div>
+        <p lang="de">
+          Hit Trainer ist ein Metronom zum Üben und für die Bühne. Die App
+          vereint alles, was ich mir von einer Metronom-App in meinen 10+ Jahren
+          als Profimusiker gewünscht habe. Sie umfasst einen Tempo Trainer, der
+          das Tempo für dich steigert, eine Übungsuhr, einen Setlist-Modus mit
+          den Tempi deiner Songs, der optimiert ist für die Benutzung auf der
+          Bühne, und einen Modus zum Üben von Band-Hits und Stops (Kicks). Alle
+          Funktionen lassen sich bis in viele Details an die Präferenzen der
+          Nutzer:innen anpassen. Zum Beispiel können Odd-Meters geübt werden und
+          auch in allen möglichen Kombinationen miteinander gruppiert werden,
+          und der Klick kann sehr einfach auf die Double-Offs gesetzt werden.
+          Die App ist geeignet für Anfänger bis Profis: Du lädst sie einmal
+          herunter und kannst eine ganze Karriere lang davon profitieren.
+        </p>
+        <p class="second">
+          Hit Trainer is a metronome for practice and for the stage. It brings
+          together everything I have wanted from a metronome app in more than
+          10 years as a professional musician. It includes a Tempo Trainer that
+          raises the tempo for you, a Practice Timer, a Setlist Mode with the
+          tempos of your songs, optimized for use on stage, and a mode for
+          practicing band hits and stops (kicks). Every feature can be adjusted
+          in detail to your preferences. For example, you can practice odd
+          meters, group them in every possible combination, and put the click
+          on the "Double Off" with a single switch. The app is made for
+          beginners and professionals alike: download it once and benefit from
+          it for an entire career.
+        </p>
+        <div class="chips">
+          <span class="chip chip-lavender">Odd meters</span>
+          <span class="chip chip-turquoise">Tempo Trainer</span>
+          <span class="chip chip-yellow">Setlist Mode</span>
+          <span class="chip chip-pink">Hits &amp; stops</span>
+        </div>
+        <div class="buy">
+          <a
+            class="badge"
+            href={hitTrainer.url}
+            target="_blank"
+            rel="noopener"
+          >
+            <img
+              src="/images/app-store-badge.svg"
+              alt="Download Hit Trainer on the App Store"
+              width="150"
+              height="50"
+            />
+          </a>
+          <p class="note">For iPhone. One-time purchase, no subscription.</p>
+        </div>
+      </div>
+      <div class="photo">
+        <img
+          src="/images/hit-trainer-screen.webp"
+          alt="Hit Trainer on iPhone: metronome at 112 BPM with tempo presets, tap button and a two-bar cycle"
+          width="600"
+          height="1301"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  section { padding: 110px 32px 0; }
+  .card {
+    border: 3px solid var(--ink);
+    border-radius: 20px;
+    background: var(--surface);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    overflow: hidden;
+    box-shadow: 8px 8px 0 var(--shadow);
+  }
+  .copy {
+    padding: clamp(28px, 4vw, 48px);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+  }
+  .app-head {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .icon {
+    width: 72px;
+    height: 72px;
+    flex: none;
+    border: 3px solid var(--ink);
+    border-radius: 18px;
+  }
+  h3 {
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+  .copy p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin: 0;
+  }
+  .copy p.sub {
+    font-size: 13px;
+    line-height: 1.4;
+    margin-top: 4px;
+  }
+  .copy p.second {
+    font-size: 14px;
+    color: color-mix(in srgb, var(--ink) 70%, transparent);
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .chip {
+    border: 2px dashed var(--ink);
+    border-radius: 999px;
+    padding: 4px 14px;
+    font-size: 13px;
+  }
+  .chip-lavender { background: var(--lavender); }
+  .chip-turquoise { background: var(--turquoise); }
+  .chip-yellow { background: var(--yellow); }
+  .chip-pink { background: var(--pink); }
+  .buy {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 18px;
+  }
+  .copy p.note {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  /* Apple's badge artwork is used unaltered; only scaled. */
+  .badge {
+    flex: none;
+    display: block;
+    border-radius: 10px;
+    transition: transform 0.2s;
+  }
+  .badge img { height: 50px; width: auto; }
+  .badge:hover { transform: rotate(-2deg); }
+  .photo {
+    border-left: 3px solid var(--ink);
+    min-height: 320px;
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(20px, 3vw, 40px);
+  }
+  .photo img {
+    max-width: 100%;
+    max-height: 560px;
+    width: auto;
+    height: auto;
+    border: 3px solid var(--ink);
+    border-radius: 24px;
+    box-shadow: 6px 6px 0 var(--shadow);
+  }
+  @media (max-width: 760px) {
+    .card { grid-template-columns: 1fr; }
+    .photo {
+      border-left: none;
+      border-top: 3px solid var(--ink);
+      min-height: 260px;
+    }
+  }
+</style>
